@@ -39,9 +39,9 @@ window.addEventListener('DOMContentLoaded', init);
 
 // Initialize function, begins all of the JS code in this file
 async function init() {
-  console.log("here1");
+
   initializeServiceWorker();
-console.log("here2");
+
   try {
     await fetchRecipes();
   } catch (err) {

@@ -38,6 +38,8 @@ export class Router {
      * router instance using the 'this' keyword. Substitute 'home' for the variable
      * page
      */
+
+    this[page] = pageFunc;
   }
 
   /**
@@ -65,5 +67,41 @@ export class Router {
      *     and URL + hash to history
      *  4. Finally, call the stored function for the given page
      */
+    //if function doesn exist, call log error
+
+
+    //How to check if the function exists, hwod eos it exist  How does the stored functino work?
+    // if(!this[page]){
+    //   console.log("ERROR: FUNCTION DOES NOT EXIST");
+    // }
+
+      if(this[page]== undefined){
+         console.log("ERROR: FUNCTION DOES NOT EXIST");
+      }
+
+
+  let hash = "";
+    if(page=="home"){
+       hash = "";
+    
+    }else{
+        // hash = `#${page}`;
+        hash = "#"+page;
+    }
+    let url = window.location.origin + hash;
+
+    if((!statePopped)&& (window.location.hash!=hash)){
+
+      //statePopped variable: function called using front-back button
+      //how to add current state and url
+      //pushState(state, title, url)
+      //state is which page we're on
+      
+      history.pushState({page : page},"",url);
+      
+    }
+
+    //call stored function for given page.
+    this[page]();
   }
 }

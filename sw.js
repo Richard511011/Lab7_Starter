@@ -40,17 +40,7 @@ self.addEventListener('install', function (event) {
  */
 self.addEventListener('activate', function (event) {
 
-  event.respondWith(
-    caches.match(event.request)
-      .then(function(response) {
-        // Cache hit - return response
-        if (response) {
-          return response;
-        }
-        return fetch(event.request);
-      }
-    )
-  );
+    event.waitUntil(clients.claim());
   /**
    * TODO - Part 2 Step 3
    * Create a function as outlined above, it should be one line
